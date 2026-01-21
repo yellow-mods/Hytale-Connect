@@ -1,0 +1,15 @@
+# Gradle
+.gradle/
+build/
+
+# Hytale Server
+server/
+!server/hytale-downloader-windows-amd64.exe
+!server/QUICKSTART.md
+.hytale-downloader-credentials.json
+hytale-downloader.zip
+
+# IDEs
+.idea/
+*.iml
+.vscode/

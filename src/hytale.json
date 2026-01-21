@@ -1,0 +1,9 @@
+{
+    "Name": "HytaleConnect",
+    "Group": "fr.hytaleconnect",
+    "Version": "1.0.0",
+    "Main": "fr.hytaleconnect.HytaleConnect",
+    "Description": "Versatile Hytale integration plugin for statistics, rewards, and connections.",
+    "Author": "HytaleConnect",
+    "Website": "https://hytale-top-serveur.fr"
+}

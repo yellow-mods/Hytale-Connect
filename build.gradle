@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+group = 'fr.hytaleconnect'
+version = '1.0.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Hytale Server API
+    compileOnly files('libs/HytaleServer.jar')
+    
+    // JSON processing
+    implementation 'com.google.code.gson:gson:2.10.1'
+    
+    implementation 'org.slf4j:slf4j-api:2.0.9'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
