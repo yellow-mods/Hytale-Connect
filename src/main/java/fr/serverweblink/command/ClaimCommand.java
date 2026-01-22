@@ -1,4 +1,4 @@
-package fr.hytaleconnect.command;
+package fr.serverweblink.command;
 
 import com.hypixel.hytale.server.core.command.system.AbstractCommand;
 import com.hypixel.hytale.server.core.command.system.CommandContext;
@@ -7,14 +7,14 @@ import com.hypixel.hytale.server.core.console.ConsoleSender;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.HytaleServer;
 import com.hypixel.hytale.server.core.Message;
-import fr.hytaleconnect.service.VoteService;
-import fr.hytaleconnect.config.HytaleConnectConfig;
+import fr.serverweblink.service.VoteService;
+import fr.serverweblink.config.ServerWebLinkConfig;
 
 public class ClaimCommand extends AbstractCommand {
     private final VoteService voteService;
-    private final HytaleConnectConfig config;
+    private final ServerWebLinkConfig config;
 
-    public ClaimCommand(VoteService voteService, HytaleConnectConfig config) {
+    public ClaimCommand(VoteService voteService, ServerWebLinkConfig config) {
         super(config.getCommandName());
         this.voteService = voteService;
         this.config = config;
@@ -34,14 +34,14 @@ public class ClaimCommand extends AbstractCommand {
     public java.util.concurrent.CompletableFuture<Void> execute(CommandContext ctx) {
         try {
             if (!ctx.isPlayer()) {
-                System.out.println("[HytaleConnect] This command can only be executed by a player.");
+                System.out.println("[ServerWebLink] This command can only be executed by a player.");
                 return java.util.concurrent.CompletableFuture.completedFuture(null);
             }
 
             CommandSender sender = ctx.sender();
             if (!(sender instanceof Player)) {
                 System.out.println(
-                        "[HytaleConnect] Sender is not a valid Player instance: " + sender.getClass().getName());
+                        "[ServerWebLink] Sender is not a valid Player instance: " + sender.getClass().getName());
                 return java.util.concurrent.CompletableFuture.completedFuture(null);
             }
 
@@ -56,7 +56,7 @@ public class ClaimCommand extends AbstractCommand {
 
             // Notify user
             sendMessage(player, config.getMessages().getCheckingVote());
-            System.out.println("[HytaleConnect] Checking vote for player: " + finalPlayerName);
+            System.out.println("[ServerWebLink] Checking vote for player: " + finalPlayerName);
 
             // Async vote check
             voteService.hasVoted(finalPlayerName).thenAccept(result -> {
@@ -112,11 +112,11 @@ public class ClaimCommand extends AbstractCommand {
                                     }
                                 } catch (Exception e) {
                                     System.out.println(
-                                            "[HytaleConnect-Broadcast] Failed to broadcast: " + e.getMessage());
+                                            "[ServerWebLink-Broadcast] Failed to broadcast: " + e.getMessage());
                                 }
                             }
 
-                            System.out.println("[HytaleConnect] Rewards claimed for " + finalPlayerName);
+                            System.out.println("[ServerWebLink] Rewards claimed for " + finalPlayerName);
                         } else {
                             sendMessage(player, config.getMessages().getErrorClaiming());
                         }
@@ -154,7 +154,7 @@ public class ClaimCommand extends AbstractCommand {
             });
 
         } catch (Throwable t) {
-            System.out.println("[HytaleConnect] Error executing command: " + t.getMessage());
+            System.out.println("[ServerWebLink] Error executing command: " + t.getMessage());
         }
         return java.util.concurrent.CompletableFuture.completedFuture(null);
     }
@@ -163,7 +163,7 @@ public class ClaimCommand extends AbstractCommand {
         try {
             player.sendMessage(formatMessage(message));
         } catch (Throwable t) {
-            System.out.println("[HytaleConnect-DEBUG] Failed to send message: " + t.getMessage());
+            System.out.println("[ServerWebLink-DEBUG] Failed to send message: " + t.getMessage());
         }
     }
 

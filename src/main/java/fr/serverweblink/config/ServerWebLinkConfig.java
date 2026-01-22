@@ -1,6 +1,6 @@
-package fr.hytaleconnect.config;
+package fr.serverweblink.config;
 
-public class HytaleConnectConfig {
+public class ServerWebLinkConfig {
     private String serverApiKey;
     private String apiUrl;
     private RewardConfig rewards;
@@ -12,7 +12,7 @@ public class HytaleConnectConfig {
     private boolean stackRewards;
     private boolean voteEnabled;
 
-    public HytaleConnectConfig() {
+    public ServerWebLinkConfig() {
         // Defaults
         this.serverApiKey = "CHANGE_ME";
         this.apiUrl = "https://hytale-top-serveur.fr/api/v1/server/CHANGE_ME";

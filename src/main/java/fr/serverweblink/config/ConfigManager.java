@@ -1,4 +1,4 @@
-package fr.hytaleconnect.config;
+package fr.serverweblink.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -10,7 +10,7 @@ import java.io.IOException;
 public class ConfigManager {
     private final File configFile;
     private final Gson gson;
-    private HytaleConnectConfig config;
+    private ServerWebLinkConfig config;
 
     public ConfigManager(File dataFolder) {
         if (!dataFolder.exists()) {
@@ -26,30 +26,30 @@ public class ConfigManager {
         }
 
         try (FileReader reader = new FileReader(configFile)) {
-            this.config = gson.fromJson(reader, HytaleConnectConfig.class);
-            System.out.println("[HytaleConnect] Configuration loaded.");
+            this.config = gson.fromJson(reader, ServerWebLinkConfig.class);
+            System.out.println("[ServerWebLink] Configuration loaded.");
 
             if ("CHANGE_ME".equals(config.getServerApiKey())) {
-                System.out.println("[HytaleConnect] WARNING: Server API Key is not set!");
+                System.out.println("[ServerWebLink] WARNING: Server API Key is not set!");
             }
         } catch (IOException e) {
             e.printStackTrace();
             // Fallback to default
-            this.config = new HytaleConnectConfig();
+            this.config = new ServerWebLinkConfig();
         }
     }
 
     public void saveDefaultConfig() {
-        this.config = new HytaleConnectConfig();
+        this.config = new ServerWebLinkConfig();
         try (FileWriter writer = new FileWriter(configFile)) {
             gson.toJson(config, writer);
-            System.out.println("[HytaleConnect] Default config created.");
+            System.out.println("[ServerWebLink] Default config created.");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public HytaleConnectConfig getConfig() {
+    public ServerWebLinkConfig getConfig() {
         return config;
     }
 }

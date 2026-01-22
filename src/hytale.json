@@ -1,9 +1,9 @@
 {
-    "Name": "HytaleConnect",
-    "Group": "fr.hytaleconnect",
+    "Name": "ServerWebLink",
+    "Group": "fr.serverweblink",
     "Version": "1.0.0",
-    "Main": "fr.hytaleconnect.HytaleConnect",
+    "Main": "fr.serverweblink.ServerWebLink",
     "Description": "Versatile Hytale integration plugin for statistics, rewards, and connections.",
-    "Author": "HytaleConnect",
+    "Author": "ServerWebLink",
     "Website": "https://hytale-top-serveur.fr"
 }

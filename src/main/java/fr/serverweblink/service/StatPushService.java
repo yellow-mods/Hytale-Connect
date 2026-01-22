@@ -1,12 +1,12 @@
-package fr.hytaleconnect.service;
+package fr.serverweblink.service;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonArray;
 import com.hypixel.hytale.server.core.HytaleServer;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
-import fr.hytaleconnect.config.HytaleConnectConfig;
-import fr.hytaleconnect.stats.ServerStatsCollector;
+import fr.serverweblink.config.ServerWebLinkConfig;
+import fr.serverweblink.stats.ServerStatsCollector;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -18,13 +18,13 @@ import java.util.concurrent.TimeUnit;
 
 public class StatPushService {
 
-    private final HytaleConnectConfig config;
+    private final ServerWebLinkConfig config;
     private final ServerStatsCollector statsCollector;
     private final HttpClient httpClient;
     private final Gson gson;
     private ScheduledFuture<?> scheduledTask;
 
-    public StatPushService(HytaleConnectConfig config, ServerStatsCollector statsCollector) {
+    public StatPushService(ServerWebLinkConfig config, ServerStatsCollector statsCollector) {
         this.config = config;
         this.statsCollector = statsCollector;
         this.httpClient = HttpClient.newBuilder()
@@ -41,7 +41,7 @@ public class StatPushService {
 
         int intervalMinutes = config.getStats().getIntervalMinutes();
 
-        System.out.println("[HytaleConnect] Starting Stat Push Service (Interval: "
+        System.out.println("[ServerWebLink] Starting Stat Push Service (Interval: "
                 + intervalMinutes + " min)");
 
         pushStats();
@@ -62,9 +62,9 @@ public class StatPushService {
 
     private void pushStats() {
         try {
-            System.out.println("[HytaleConnect-Push] Collecting and pushing server stats...");
+            System.out.println("[ServerWebLink-Push] Collecting and pushing server stats...");
             JsonObject payload = new JsonObject();
-            HytaleConnectConfig.StatPushConfig.PrivacyConfig privacy = config.getStats().getPrivacy();
+            ServerWebLinkConfig.StatPushConfig.PrivacyConfig privacy = config.getStats().getPrivacy();
 
             payload.addProperty("players", statsCollector.getCurrentPlayers());
             payload.addProperty("max_players", statsCollector.getMaxPlayers());
@@ -129,20 +129,20 @@ public class StatPushService {
             httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                     .thenAccept(response -> {
                         if (response.statusCode() >= 200 && response.statusCode() < 300) {
-                            System.out.println("[HytaleConnect-Push] Stats pushed successfully!");
+                            System.out.println("[ServerWebLink-Push] Stats pushed successfully!");
                         } else {
                             System.out.println(
-                                    "[HytaleConnect-Push] FAILED to push stats. Status: " + response.statusCode());
+                                    "[ServerWebLink-Push] FAILED to push stats. Status: " + response.statusCode());
                         }
                     })
                     .exceptionally(ex -> {
                         System.out.println(
-                                "[HytaleConnect-Push] API Connection Error (The API might be down or unreachable)");
+                                "[ServerWebLink-Push] API Connection Error (The API might be down or unreachable)");
                         return null;
                     });
 
         } catch (Exception e) {
-            System.out.println("[HytaleConnect] Error preparing stats push: " + e.getMessage());
+            System.out.println("[ServerWebLink] Error preparing stats push: " + e.getMessage());
         }
     }
 }

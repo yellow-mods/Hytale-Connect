@@ -1,4 +1,4 @@
-package fr.hytaleconnect.stats;
+package fr.serverweblink.stats;
 
 import com.hypixel.hytale.server.core.HytaleServer;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
@@ -40,7 +40,7 @@ public class ServerStatsCollector {
         try {
             return com.hypixel.hytale.server.core.universe.Universe.get().getPlayers().size();
         } catch (Exception e) {
-            System.out.println("[HytaleConnect-Stats] Error getting player count: " + e.getMessage());
+            System.out.println("[ServerWebLink-Stats] Error getting player count: " + e.getMessage());
             return 0;
         }
     }
@@ -49,7 +49,7 @@ public class ServerStatsCollector {
         try {
             return com.hypixel.hytale.server.core.universe.Universe.get().getPlayers();
         } catch (Exception e) {
-            System.out.println("[HytaleConnect-Stats] Error getting player list: " + e.getMessage());
+            System.out.println("[ServerWebLink-Stats] Error getting player list: " + e.getMessage());
             return new ArrayList<>();
         }
     }
@@ -79,7 +79,7 @@ public class ServerStatsCollector {
                 result.add(new PluginInfo(name, version, plugin.isEnabled()));
             }
         } catch (Exception e) {
-            System.out.println("[HytaleConnect-Stats] Error getting plugin list: " + e.getMessage());
+            System.out.println("[ServerWebLink-Stats] Error getting plugin list: " + e.getMessage());
         }
         return result;
     }

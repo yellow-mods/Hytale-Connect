@@ -10,5 +10,5 @@ if %errorlevel% neq 0 (
 copy src\hytale.json build\classes\hytale.json
 copy src\hytale.json build\classes\manifest.json
 echo Compilation Successful!
-jar cvf HytaleConnect.jar -C build/classes .
-echo Build finished: HytaleConnect.jar
+jar cvf ServerWebLink.jar -C build/classes .
+echo Build finished: ServerWebLink.jar

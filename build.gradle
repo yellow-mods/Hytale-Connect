@@ -2,8 +2,9 @@ plugins {
     id 'java'
 }
 
-group = 'fr.hytaleconnect'
-version = '1.0.0-SNAPSHOT'
+group = 'fr.serverweblink'
+version = '1.0.0'
+archivesBaseName = 'ServerWebLink'
 
 repositories {
     mavenCentral()

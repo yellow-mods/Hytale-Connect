@@ -1,6 +1,6 @@
-package fr.hytaleconnect.service;
+package fr.serverweblink.service;
 
-import fr.hytaleconnect.config.HytaleConnectConfig;
+import fr.serverweblink.config.ServerWebLinkConfig;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.net.URI;
@@ -11,7 +11,7 @@ import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
 
 public class VoteService {
-    private final HytaleConnectConfig config;
+    private final ServerWebLinkConfig config;
     private final HttpClient httpClient;
     private final Gson gson;
 
@@ -22,7 +22,7 @@ public class VoteService {
         ERROR
     }
 
-    public VoteService(HytaleConnectConfig config) {
+    public VoteService(ServerWebLinkConfig config) {
         this.config = config;
         this.httpClient = HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_1_1)
@@ -53,7 +53,7 @@ public class VoteService {
 
     public CompletableFuture<VoteResult> hasVoted(String playerName) {
         if (config.getServerApiKey().equals("CHANGE_ME")) {
-            System.out.println("[HytaleConnect] Cannot check vote: API Key not configured.");
+            System.out.println("[ServerWebLink] Cannot check vote: API Key not configured.");
             return CompletableFuture.completedFuture(VoteResult.error());
         }
 
@@ -94,7 +94,7 @@ public class VoteService {
                     }
                 })
                 .exceptionally(e -> {
-                    System.out.println("[HytaleConnect] Exception checking vote (Connection error or timeout)");
+                    System.out.println("[ServerWebLink] Exception checking vote (Connection error or timeout)");
                     return VoteResult.error();
                 });
     }
@@ -119,7 +119,7 @@ public class VoteService {
                     return response.statusCode() == 200 || response.statusCode() == 201;
                 })
                 .exceptionally(e -> {
-                    System.out.println("[HytaleConnect] Claim Exception (Connection error or timeout)");
+                    System.out.println("[ServerWebLink] Claim Exception (Connection error or timeout)");
                     return false;
                 });
     }

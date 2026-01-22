@@ -1,6 +1,6 @@
-# Configuration - HytaleConnect
+# Configuration - ServerWebLink
 
-Ce document détaille l'ensemble des options de configuration pour le plugin `HytaleConnect`. Le fichier de configuration principal est généré automatiquement lors du premier lancement sous : `mods/HytaleConnect/config.json`.
+Ce document détaille l'ensemble des options de configuration pour le plugin `ServerWebLink`. Le fichier de configuration principal est généré automatiquement lors du premier lancement sous : `mods/ServerWebLink/config.json`.
 
 ---
 
@@ -103,4 +103,4 @@ Permet de masquer certaines données sensibles :
 
 ---
 
-© 2026 HytaleConnect - Documentation de Configuration.
+© 2026 ServerWebLink - Documentation de Configuration.

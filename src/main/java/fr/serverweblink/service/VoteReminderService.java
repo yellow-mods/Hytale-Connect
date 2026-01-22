@@ -1,20 +1,20 @@
-package fr.hytaleconnect.service;
+package fr.serverweblink.service;
 
 import com.hypixel.hytale.server.core.HytaleServer;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.universe.Universe;
 import com.hypixel.hytale.server.core.entity.entities.Player;
-import fr.hytaleconnect.config.HytaleConnectConfig;
+import fr.serverweblink.config.ServerWebLinkConfig;
 
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 public class VoteReminderService {
 
-    private final HytaleConnectConfig config;
+    private final ServerWebLinkConfig config;
     private ScheduledFuture<?> scheduledTask;
 
-    public VoteReminderService(HytaleConnectConfig config) {
+    public VoteReminderService(ServerWebLinkConfig config) {
         this.config = config;
     }
 
@@ -27,7 +27,7 @@ public class VoteReminderService {
         if (interval <= 0)
             interval = 30; // Safety default
 
-        System.out.println("[HytaleConnect] Starting Vote Reminder Service (Interval: " + interval + " min)");
+        System.out.println("[ServerWebLink] Starting Vote Reminder Service (Interval: " + interval + " min)");
 
         this.scheduledTask = HytaleServer.SCHEDULED_EXECUTOR.scheduleAtFixedRate(
                 this::broadcastReminder,
@@ -66,12 +66,12 @@ public class VoteReminderService {
                     });
                 }
             } catch (Exception e) {
-                System.out.println("[HytaleConnect] Error accessing Universe: " + e.getMessage());
+                System.out.println("[ServerWebLink] Error accessing Universe: " + e.getMessage());
             }
 
-            System.out.println("[HytaleConnect] Vote reminder broadcasted.");
+            System.out.println("[ServerWebLink] Vote reminder broadcasted.");
         } catch (Exception e) {
-            System.out.println("[HytaleConnect] Error broadcasting reminder: " + e.getMessage());
+            System.out.println("[ServerWebLink] Error broadcasting reminder: " + e.getMessage());
         }
     }
 
