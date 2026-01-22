@@ -34,7 +34,7 @@ ServerWebLink is the essential bridge for server owners who want a professional 
 - **Asynchronous Processing**: All API checks and stat pushes are performed in the background to ensure zero impact on tick rate.
 - **Flexible Rewards**: Configure an unlimited number of console commands to execute upon successful verification.
 - **Stats Reporting**: Outbound HTTP "Push API" for firewall-friendly tracking, no port forwarding required.
-- **CurseForge Ready**: A modular, generic design that works with any compatible API (defaulting to HytaleTop).
+-  A modular, generic design that works with any compatible API (defaulting to HytaleTop).
 
 > [!NOTE]
 > **A Generic Bridge**: While ServerWebLink works out-of-the-box with [HytaleTop](https://hytale-top-serveur.fr), it is built as a generic integration layer. All endpoints are fully customizable in the configuration, making it compatible with any custom backend or community platform.
